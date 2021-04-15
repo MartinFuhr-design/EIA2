@@ -1,0 +1,31 @@
+body{
+    background-color: #000000;
+}
+
+h1{
+    color: #ffffff;
+}
+
+.div0{
+    height: 750px;
+    width: 700px;
+    margin-left: 10%;
+    background-color: #fffefd;
+    float: left;
+}
+
+.div1{
+    height: 750px;
+    width: 700px;
+    margin-right: 10%;
+    background-color: #ffffff;
+    float: right;
+}
+
+span{
+    position: fixed;
+    width:200px;
+    height:100px;
+    background-color: #969191;
+}
+
