@@ -1,0 +1,89 @@
+html body{
+	font-family: "arial";
+    background-color: darkslategray;
+	width: 1280px;
+	height: 800px;
+	text-align: center;
+	margin: 0;
+	padding:0;
+	overflow: hidden;  
+}
+
+h2{
+	text-align: center;
+	font-size: 60px;	
+}
+
+input[type="radio"], input[type="checkbox"], label {
+	display: inline;
+}
+
+h1 {
+	grid-column: span 2;
+	text-align: center;
+}
+
+.formular {
+	width: 500px;
+	height: 350px;
+	text-align: left;
+    font-size: 18px;
+	margin-top: 100px;
+	margin-left: 100px;
+}
+
+#game{
+	justify-content: center; 
+	text-align: center;
+}
+
+#playerbox{
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	justify-content: center; 
+	text-align: center;
+}
+
+.card{
+	height: 300px;
+  	width: 200px;
+	border-radius: 10px;
+	margin: 0px 25px 25px 0px;
+	text-align: center;
+	font-size: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.p {
+	position: absolute;
+	text-align: center;
+	justify-content: center;
+}
+
+.hidden{
+	background-color: black;
+	cursor: pointer;
+}
+
+.hidden p{
+	display: none;
+}
+
+.open{
+	background-color: rgb(231, 236, 234);
+}
+
+.taken{
+	visibility: hidden;
+}
+
+.taken p{
+	display: none;
+}
+
+.is-hidden {
+	display: none;
+}
