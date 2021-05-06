@@ -1,10 +1,22 @@
-html, body{
-    display: flex;
-    justify-content: space-evenly;
-    width: 95vw;
-    height: 95vh;
+body {
+    background-color: #000000;
 }
 
-#canvas{
-    border: black solid 2px;
+canvas {
+    background-color: #ffffff;
+    margin-left: 35%;
+    margin-top: 7%;
+}
+
+h1 {
+    text-align: center;
+    color: #ffffff;
+    font-style: oblique;
+}
+
+p {
+    text-align: center;
+    margin-top: 5%;
+    color: #ffffff;
+    font-style: italic;
 }
