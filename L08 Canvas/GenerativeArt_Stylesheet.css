@@ -1,0 +1,10 @@
+html, body{
+    display: flex;
+    justify-content: space-evenly;
+    width: 95vw;
+    height: 95vh;
+}
+
+#canvas{
+    border: black solid 2px;
+}
