@@ -1,66 +1,22 @@
 namespace MemoryGameUpdate {
 
-    //Variables
+
+    //Variablen werden deklariert
     let numPairs: number;
     let cardContent: string[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y"];
     let cardArray: HTMLElement[] = [];
     let cardsOpen: number = 0;
     let cardsOpenArray: HTMLElement[] = [];
     let checkRest: HTMLElement[] = [];
-
-    // game start
-    window.addEventListener("load", startGame);
-    function startGame(): void {
-        let startMemory: HTMLElement = <HTMLElement>document.querySelector(".start");
-        startMemory.addEventListener("click", main);
-    }
-   
-    // FormData with different elements
+  
+    
+    // Formdata mit den verschiedenen Eigenschaften
     let formData: FormData;
     let size: number;
     let backGColor: FormDataEntryValue | null; 
     let backSColor: FormDataEntryValue | null;
     let fontColor: FormDataEntryValue | null;
     let fontStyle: FormDataEntryValue | null;
-
-
-    //cards are created, given attributes ()  
-    function createCard(_cardContent: string): void {
-        let card: HTMLElement = document.createElement("div");
-
-        card.innerHTML = "<p>" + _cardContent + "</p>";
-        card.classList.add("card");
-        card.classList.add("hidden");
-
-        cardArray.push(card);
-        checkRest.push(card);
-        card.addEventListener("click", clickHandler);
-
-        // Size of cards
-        card.style.width = size + "px";
-        card.style.height = size + "px";
-
-        // user can change background
-        if (backGColor) { 
-            card.style.backgroundColor = backGColor.toString();
-        }
-        
-        // user can change color of cards
-        if (backSColor) { 
-            card.style.background = backSColor.toString();
-        }
-
-        // user can change color of Font
-        if (fontColor) { 
-            card.style.color = fontColor.toString();
-        }
-
-        // Choose font type
-        if (fontStyle) { 
-            card.style.fontFamily = fontStyle.toString();
-        }
-
-    }
 
     function clickHandler(_event: Event): void {
         let target: HTMLElement = <HTMLElement>_event.target;
@@ -80,7 +36,69 @@ namespace MemoryGameUpdate {
             }
         }
     }
-    // compare
+
+
+    // Spiel wird gestartet durch Click Event
+    window.addEventListener("load", startGame);
+    function startGame(): void {
+    let startMemory: HTMLElement = <HTMLElement>document.querySelector(".start");
+    startMemory.addEventListener("click", main);
+    }
+
+
+    //Karten bekommen Eigenschaften und werden erschaffen
+    function createCard(_cardContent: string): void {
+        let card: HTMLElement = document.createElement("div");
+
+        card.innerHTML = "<p>" + _cardContent + "</p>";
+        card.classList.add("card");
+        card.classList.add("hidden");
+
+        cardArray.push(card);
+        checkRest.push(card);
+        card.addEventListener("click", clickHandler);
+
+        // Kartengröße
+        card.style.width = size + "px";
+        card.style.height = size + "px";
+
+        // Hintergrundfarbe kann bestimmt werden
+        if (backGColor) { 
+            card.style.backgroundColor = backGColor.toString();
+        }
+        
+        // Kartenfarbe kann bestimmt werden
+        if (backSColor) { 
+            card.style.background = backSColor.toString();
+        }
+
+        // Farbe der Kartenschrift kann bestimmt werden
+        if (fontColor) { 
+            card.style.color = fontColor.toString();
+        }
+
+        // Kartenschrift kann bestimmt werden
+        if (fontStyle) { 
+            card.style.fontFamily = fontStyle.toString();
+        }
+
+    }
+
+
+    //Karten werden im Array gemischt mit Mathfloor.random
+    // tslint:disable-next-line: no-any (any wird dekativiert)
+    function shuffleArray(_array: any[]): any[] {
+        for (var i: number = _array.length - 1; i > 0; i--) {
+            var j: number = Math.floor(Math.random() * (i + 1));
+            var temp: number = _array[i];
+            _array[i] = _array[j];
+            _array[j] = temp;
+        }
+        return _array;
+    }
+
+
+    // Karten werden verglichen 
     function compareCards(): void {
         if (cardsOpenArray[0].innerHTML == cardsOpenArray[1].innerHTML) {
             for (let i: number = 0; i < 2; i++) {
@@ -99,25 +117,16 @@ namespace MemoryGameUpdate {
         checkWin();
     }
 
+
+    //Funktion fürs Ende des Spiels (wenn Kartenarray leer ist kommt Message für User)
     function checkWin(): void {
         if (checkRest.length == 0) {
             alert("The Game ended. You won!");
         }
     }
 
-    //Shuffle cards in Array
-    // tslint:disable-next-line: no-any
-    function shuffleArray(_array: any[]): any[] {
-        for (var i: number = _array.length - 1; i > 0; i--) {
-            var j: number = Math.floor(Math.random() * (i + 1));
-            var temp: number = _array[i];
-            _array[i] = _array[j];
-            _array[j] = temp;
-        }
-        return _array;
-    }
 
-    // show cards in Html
+    // Karten werden in das Dokument mit der Funktion Main importiert
     function main(_event: Event): void {
 
         let fieldset: HTMLFormElement = <HTMLFormElement>document.querySelector(".formular");
@@ -135,7 +144,7 @@ namespace MemoryGameUpdate {
         fontColor = formData.get("FColor"); 
         fontStyle = formData.get("Radiogroup"); 
 
-        // stepper response
+        // Der Stepper anwortet
         let pairOfCards: FormDataEntryValue | null = formData.get("Stepper"); 
         if (pairOfCards) {
         numPairs = Number(pairOfCards);
@@ -144,13 +153,13 @@ namespace MemoryGameUpdate {
             numPairs = 5;
         }
 
-        //cards are created
+        //Karten werden erschaffen
         for (let i: number = 0; i < numPairs; i++) {
             createCard(cardContent[i]);
             createCard(cardContent[i]);
         }
 
-        //array gets shuffle
+        //Array wird durchgemischt
         shuffleArray(cardArray);
 
         for (let i: number = 0; i < cardArray.length; i++) {
