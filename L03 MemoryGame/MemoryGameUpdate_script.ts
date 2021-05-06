@@ -118,12 +118,14 @@ namespace MemoryGameUpdate {
     }
 
 
+    
     //Funktion fürs Ende des Spiels (wenn Kartenarray leer ist kommt Message für User)
     function checkWin(): void {
         if (checkRest.length == 0) {
             alert("The Game ended. You won!");
         }
     }
+
 
 
     // Karten werden in das Dokument mit der Funktion Main importiert
