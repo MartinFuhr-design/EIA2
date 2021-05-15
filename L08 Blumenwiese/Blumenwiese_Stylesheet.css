@@ -1,0 +1,14 @@
+body {
+    background-color: black;
+}
+
+canvas {
+    background-color: white;
+    margin-left: 30%;
+}
+
+h1 {
+    text-align: center;
+    color: #ffffff;
+    font-style: oblique;
+}
